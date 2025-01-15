@@ -6,11 +6,20 @@ import routes from './src/routes/index.js';
 
 const app = express();
 
-app.use(cors({
-    origin: 'https://dashboard-aerolinea.netlify.app/',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}))
+// Permitir solicitudes desde tu dominio frontend
+const allowedOrigins = ['https://dashboard-aerolinea.netlify.app'];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('CORS not allowed for this origin'));
+      }
+    },
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());

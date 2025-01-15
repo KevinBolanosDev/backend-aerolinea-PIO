@@ -13,7 +13,10 @@ const connectionString = process.env.DATABASE_URL;
 // Conectando el servidor a pg admin
 export const db = new Pool({
   allowExitOnIdle: true,
-  connectionString
+  connectionString,
+  ssl: {
+    rejectUnauthorized: false, // Necesario si estás usando Render con SSL habilitado
+  },
 });
 
 // Verificamos la conexión
