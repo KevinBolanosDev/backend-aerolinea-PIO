@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { PORT } from './config.js'
 import routes from './src/routes/index.js';
+import session from 'express-session';
 
 const app = express();
 
