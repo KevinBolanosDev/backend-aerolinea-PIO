@@ -7,6 +7,13 @@ import session from 'express-session';
 
 const app = express();
 
+/* app.use(cors(
+    {
+        origin: 'http://localhost:5173',
+        credentials: true
+    }
+)); */
+
 // Permitir solicitudes desde tu dominio frontend
 const allowedOrigins = ['https://dashboard-aerolinea.netlify.app'];
 
@@ -28,7 +35,7 @@ app.use(cookieParser());
 
 app.use(
     session({
-      secret: SESSION_SECRET, // Cambia esto por una clave secreta segura
+      secret: 'secretsession', // Cambia esto por una clave secreta segura
       resave: false,
       saveUninitialized: true,
       cookie: {
